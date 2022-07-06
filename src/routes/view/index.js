@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { renderFeedback, renderHome } = require('../../controllers/view');
 
 const router = Router();
 

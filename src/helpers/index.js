@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const readFromFile = (filePath) => {
   try {
@@ -9,26 +9,23 @@ const readFromFile = (filePath) => {
     throw new Error(error.message);
   }
 };
-const writeToFile = (destination, content) =>
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
-  );
-/**
- *  Function to read data from a given a file and append some content
- *  @param {object} content The content you want to append to the file.
- *  @param {string} file The path to the file you want to save to.
- *  @returns {void} Nothing
- */
-const readAndAppend = (content, file) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-    } else {
-      const parsedData = JSON.parse(data);
-      parsedData.push(content);
-      writeToFile(file, parsedData);
-    }
-  });
+const writeToFile = (filePath, data) => {
+  try {
+    fs.writeFileSync(filePath, data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const readAndAppend = (data, filePath) => {
+  try {
+    const content = readFromFile(filePath);
+    content.push(data);
+    writeToFile(filePath, content);
+  } catch (error) {
+    console.log(`[ERROR]: read and append file - ${error.message}`);
+  }
+    
 };
 
 module.exports = { readFromFile, writeToFile, readAndAppend };

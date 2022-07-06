@@ -1,7 +1,7 @@
 const path = require("path");
 
-const { readFromFile, readAndAppend } = require('../helpers');
-const { v4: uuidv4 } = require('uuid');
+const { readFromFile, readAndAppend } = require("../../helpers");
+const { v4: uuidv4 } = require("uuid");
 
 const TIPS_FILE_PATH = path.join(__dirname, "../../db/tips.json");
 
@@ -15,10 +15,9 @@ const getTips = (req, res) => {
   }
 };
 const createTip = (req, res) => {
-
   const { username, topic, tip } = req.body;
 
-  if (username, topic, tip) {
+  if ((username, topic, tip)) {
     const newTip = {
       username,
       tip,
@@ -26,10 +25,10 @@ const createTip = (req, res) => {
       tip_id: uuidv4(),
     };
 
-    readAndAppend(newTip, "./db/tips.json");
-    res.json(`Tip added successfully 🚀`);
+    readAndAppend(newTip, TIPS_FILE_PATH);
+    return res.json({ succes: true, message: "Tip added successfully 🚀" });
   } else {
-    res.error("Error in adding tip");
+   return  res.status(500).json({ succes: false, message: "Error in adding tip" });
   }
 };
 

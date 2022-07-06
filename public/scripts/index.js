@@ -61,8 +61,8 @@ const postTip = (tip) =>
     body: JSON.stringify(tip),
   })
     .then((response) => response.json())
-    .then((data) => {
-      alert(data);
+    .then(({message}) => {
+      alert(message);
       createCard(tip);
     })
     .catch((error) => {

@@ -26,7 +26,7 @@ if (feedbackForm) {
       };
 
       // Fetch POST request to the server
-      fetch('api/feedback', {
+      fetch('/api/feedback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,9 +38,9 @@ if (feedbackForm) {
           alert(data.status);
           email = '';
           feedback = '';
+        })
+        .catch((error) => {
+          console.error('Error:', error);
         });
-    })
-    .catch((error) => {
-      console.error('Error:', error);
     });
 }

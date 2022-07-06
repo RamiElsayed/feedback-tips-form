@@ -9,11 +9,12 @@ const getTips = (req, res) => {
   try {
     const tips = readFromFile(TIPS_FILE_PATH);
 
-    return res.json(JSON.parse(data));
+    return res.json(tips);
   } catch (error) {
     res.status(500).json({ succss: false, message: error.message });
   }
 };
+
 const createTip = (req, res) => {
   const { username, topic, tip } = req.body;
 
@@ -26,6 +27,7 @@ const createTip = (req, res) => {
     };
 
     readAndAppend(newTip, TIPS_FILE_PATH);
+    
     return res.json({ succes: true, message: "Tip added successfully 🚀" });
   } else {
    return  res.status(500).json({ succes: false, message: "Error in adding tip" });

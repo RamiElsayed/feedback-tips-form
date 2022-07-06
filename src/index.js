@@ -11,12 +11,11 @@ const app = express();
 
 
 // Middleware for parsing JSON and urlencoded form data
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clog);
 app.use(routes);
-
-app.use(express.static('public'));
 
 
 

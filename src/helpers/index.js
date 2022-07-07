@@ -21,7 +21,7 @@ const readAndAppend = (data, filePath) => {
   try {
     const content = readFromFile(filePath);
     content.push(data);
-    writeToFile(filePath, content);
+    writeToFile(filePath, JSON.stringify(content));
   } catch (error) {
     console.log(`[ERROR]: read and append file - ${error.message}`);
   }
